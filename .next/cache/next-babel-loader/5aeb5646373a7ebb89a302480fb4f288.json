@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var GET_GENRE_API = 'genre/movie/list';","map":{"version":3,"sources":["/Users/macbook/Works/me/tes/movieaja/redux/constan/api.js"],"names":["GET_GENRE_API"],"mappings":"AAAA,OAAO,IAAMA,aAAa,GAAG,kBAAtB","sourcesContent":["export const GET_GENRE_API = 'genre/movie/list'"]},"metadata":{},"sourceType":"module"}

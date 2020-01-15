@@ -1,0 +1,5 @@
+export const GET_GENRE = 'GET_GENRE'
+export const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE'
+export const GET_MOVIE_SHOW = 'GET_MOVIE_SHOW'
+export const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL'
+export const POST_ACTIVE_GENRE = 'GET_ACTIVE_GENRE'

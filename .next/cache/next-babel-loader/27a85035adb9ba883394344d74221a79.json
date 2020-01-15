@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const OPEN_MENU = 'OPEN_MENU';","map":{"version":3,"sources":["/Users/macbook/Works/me/tes/movieaja/constan/home.js"],"names":["OPEN_MENU"],"mappings":"AAAA,OAAO,MAAMA,SAAS,GAAG,WAAlB","sourcesContent":["export const OPEN_MENU = 'OPEN_MENU'"]},"metadata":{},"sourceType":"module"}
