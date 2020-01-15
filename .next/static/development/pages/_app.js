@@ -12993,6 +12993,20 @@ function (_App) {
 
 /***/ }),
 
+/***/ "./redux/constan/auth.js":
+/*!*******************************!*\
+  !*** ./redux/constan/auth.js ***!
+  \*******************************/
+/*! exports provided: SAVE_SESSION */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_SESSION", function() { return SAVE_SESSION; });
+var SAVE_SESSION = 'SAVE_SESSION';
+
+/***/ }),
+
 /***/ "./redux/constan/home.js":
 /*!*******************************!*\
   !*** ./redux/constan/home.js ***!
@@ -13011,7 +13025,7 @@ var OPEN_MENU = 'OPEN_MENU';
 /*!********************************!*\
   !*** ./redux/constan/movie.js ***!
   \********************************/
-/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE */
+/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13021,11 +13035,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_SHOW", function() { return GET_MOVIE_SHOW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_DETAIL", function() { return GET_MOVIE_DETAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POST_ACTIVE_GENRE", function() { return POST_ACTIVE_GENRE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRENDING_MOVIE", function() { return GET_TRENDING_MOVIE; });
 var GET_GENRE = 'GET_GENRE';
 var GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
 var GET_MOVIE_SHOW = 'GET_MOVIE_SHOW';
 var GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
 var POST_ACTIVE_GENRE = 'GET_ACTIVE_GENRE';
+var GET_TRENDING_MOVIE = 'GET_TRENDING_MOVIE';
 
 /***/ }),
 
@@ -13079,6 +13095,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var _constan_auth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../constan/auth */ "./redux/constan/auth.js");
 
 
 
@@ -13090,6 +13107,7 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
 
 var initialState = {
   isAuth: false,
@@ -13103,18 +13121,33 @@ var initialState = {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case "LOGIN":
+    case _constan_auth__WEBPACK_IMPORTED_MODULE_7__["SAVE_SESSION"]:
+      localStorage.setItem('token', action.payload.token);
       return _objectSpread({}, state, {
+        isLoading: false,
+        isFinish: true,
         token: action.payload.token,
-        isAuth: true,
-        profile: action.payload.profile || ''
+        isAuth: true // profile : action.payload.profile
+
       });
 
-    case "LOGOUT":
+    case _constan_auth__WEBPACK_IMPORTED_MODULE_7__["SAVE_SESSION"] + '_PENDING':
       return _objectSpread({}, state, {
-        token: '',
-        isAuth: false,
-        profile: ''
+        isLoading: true
+      });
+
+    case _constan_auth__WEBPACK_IMPORTED_MODULE_7__["SAVE_SESSION"] + '_FULFILLED':
+      return _objectSpread({}, state, {
+        isLoading: false,
+        isFinish: true,
+        token: action.payload.token,
+        isAuth: true // profile : action.payload.profile
+
+      });
+
+    case _constan_auth__WEBPACK_IMPORTED_MODULE_7__["SAVE_SESSION"] + '_REJECTED':
+      return _objectSpread({}, state, {
+        isError: true
       });
 
     default:
@@ -13194,7 +13227,8 @@ var initialState = {
   activeGenre: '',
   isLoading: false,
   isFinish: false,
-  isError: false
+  isError: false,
+  trendingMovies: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -13252,6 +13286,24 @@ var initialState = {
       });
 
     case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_MOVIE_GENRE"] + '_REJECTED':
+      return _objectSpread({}, state, {
+        isError: true
+      });
+    //get movie trending
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_TRENDING_MOVIE"] + '_PENDING':
+      return _objectSpread({}, state, {
+        isLoading: true
+      });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_TRENDING_MOVIE"] + '_FULFILLED':
+      return _objectSpread({}, state, {
+        isLoading: false,
+        isFinish: true,
+        trendingMovies: action.payload.data
+      });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_TRENDING_MOVIE"] + '_REJECTED':
       return _objectSpread({}, state, {
         isError: true
       });
@@ -13372,8 +13424,7 @@ var makeStore = function makeStore(initialState, _ref) {
 
     var persistConfig = {
       key: 'nextjs',
-      whitelist: ['auth'],
-      // make sure it does not clash with server keys
+      whitelist: ['auth', 'movie'],
       storage: storage
     };
     var persistedReducer = persistReducer(persistConfig, _reducers__WEBPACK_IMPORTED_MODULE_1__["default"]);

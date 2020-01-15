@@ -5,14 +5,30 @@ import {GetGenre, PostActiveGenre, GetMovieGenre} from '../../redux/actions/movi
 import axios from 'axios'
 import colors from '../../tools/colors';
 import {Formik, Form, Field, ErrorMessage} from 'formik'
+import { Alert, AlertTitle } from '@material-ui/lab';
+import {AUTH_GET_REQ_TOKEN, AUTH_GET_SESSION_TOKEN, AUTH_VALIDATE_LOGIN} from '../../redux/constan/api'
+import {saveSessionToken} from '../../redux/actions/auth'
 
-const Login = () => {
+class Login extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            openError : false,
+            errorMessage : '',
+            loading : false
+        }
+    }
+    render(){
         return (
             <>
                <div className="login">
                 <div className="card-login">
                     <div className="card-header">
                         <h4 className="head-login">Login ke {process.env.APP_NAME}</h4>
+                        <Alert severity="error" style={{display : (this.state.openError)?'block':'none'}}>
+                            <AlertTitle>Error</AlertTitle>
+                            {this.state.errorMessage}
+                        </Alert>
                     </div>
                     <div className="">
                         <Formik
@@ -23,27 +39,132 @@ const Login = () => {
                                 return errors;
                             }}
                             onSubmit={(values, { setSubmitting }) => {
-                                console.log(values)
-                                setTimeout(() => {
-                                alert(JSON.stringify(values, null, 2));
-                                setSubmitting(false);
-                                }, 400);
+                                this.setState({
+                                    loading : true
+                                })
+                                axios.get(process.env.MOVIE_API+AUTH_GET_REQ_TOKEN+'?api_key='+process.env.API_KEY)
+                                .then((access) => {
+                                    const accessToken = access.data.request_token
+                                    const dataLogin = {
+                                        "username" : values.username,
+                                        "password" : values.password,
+                                        "request_token" : accessToken
+                                    }
+                                    axios.post(process.env.MOVIE_API+AUTH_VALIDATE_LOGIN+'?api_key='+process.env.API_KEY, dataLogin, {
+                                        headers : {
+                                            'Content-Type' : 'application/json'
+                                        }
+                                    })
+                                    .then(() => {
+                                        axios.post(process.env.MOVIE_API+AUTH_GET_SESSION_TOKEN+'?api_key='+process.env.API_KEY, {
+                                            request_token : accessToken
+                                        }, {
+                                            headers : {
+                                                'Content-Type' : 'application/json'
+                                            }
+                                        })
+                                        .then(async (session) => {
+                                            await this.props.dispatch(saveSessionToken({
+                                                token : session.data.session_id
+                                            }))
+                                            setSubmitting(false)
+                                            this.setState({
+                                                openError : false,
+                                                loading : false
+                                            })
+                                        }).catch((err1) => {
+                                            if(err1.request){
+                                                console.log(err1.request)
+                                            }
+                                            if(err1.response){
+                                                console.log(err1.response)
+                                            }
+                                            this.setState({
+                                                openError : true,
+                                                errorMessage : 'Something Wrong !',
+                                                loading : false
+                                            })
+                                        })
+                                    }).catch((err0) => {
+                                        if(err0.request){
+                                            this.setState({
+                                                openError : true,
+                                                errorMessage : err0.request.data.status_message,
+                                                loading : false
+                                            })
+                                        }
+                                        if(err0.response){
+                                            console.log(err0.response)
+                                            this.setState({
+                                                openError : true,
+                                                errorMessage : err0.response.data.status_message,
+                                                loading : false
+                                            })
+                                        }
+                                    })
+                                }).catch(() => {
+                                    this.setState({
+                                        openError : true,
+                                        errorMessage : 'Something Wrong !',
+                                        loading : false
+                                    })
+                                })
                             }}
                             >
-                            {({ isSubmitting }) => (
-                                <Form>
+                            {({ 
+                                 values,
+                                 errors,
+                                 touched,
+                                 handleChange,
+                                 handleBlur,
+                                 handleSubmit,
+                                 isSubmitting,
+                             }) => (
+                                <form onSubmit={handleSubmit}>
                                     <div className="form">
                                         <div className="div-field">
-                                            <Field name="username" style={{  }}/>
-                                            <ErrorMessage name="username" component="div" />
+                                            <div className="row">
+                                                <div className="input-field col s12" style={{width:350}}>
+                                                    <input 
+                                                        id="username" 
+                                                        type="text" 
+                                                        className="validate" 
+                                                        name="username" 
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.email}
+                                                        style={{width:350}}
+                                                        />
+                                                    <label for="username">Username</label>
+                                                    <span className="helper-text" data-error={errors.username && touched.username && errors.username} ></span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="div-field">
-                                            <Field type="password" name="password" />
-                                            <ErrorMessage name="password" component="div" />
+                                            <div className="row">
+                                                <div className="input-field col s12 field" style={{width:350}}>
+                                                    <input
+                                                        id="password" 
+                                                        type="password" 
+                                                        className="validate" 
+                                                        name="password" 
+                                                        onChange={handleChange}
+                                                        onBlur={handleBlur}
+                                                        value={values.email}
+                                                        style={{width:350}}
+                                                    />
+                                                    <label for="password">Password</label>
+                                                    <span className="helper-text" data-error={errors.password && touched.password && errors.password}></span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <Button variant="contained" style={{width : 200}} color="primary" disabled={isSubmitting} type="submit">Login</Button>
+                                        <Button variant="contained" style={{width : 300, background : (this.state.loading)?colors.blue1:colors.blue2}} 
+                                            disabled={this.state.loading} type="submit"
+                                        >
+                                            Login
+                                        </Button>
                                     </div>
-                                </Form>
+                                </form>
                             )}
                         </Formik>
                     </div>
@@ -64,7 +185,9 @@ const Login = () => {
                         position: abosulute;
                         top: 50%;
                         left: 50%;
-                        height:500px;
+                        min-height:500px;
+                        max-height: 750px;
+                        padding-bottom : 50px;
                     }
                     .card-login:hover {
                         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -80,18 +203,20 @@ const Login = () => {
                     .form {
                         display: flex;
                         flex-direction: column;
-                        justify-content: center;
-                        align-items:center
+                        margin-top : 50px;
+                        align-items:center;
                     }
                     .div-field {
                         display: flex;
                         flex-direction: column;
-                        margin-bottom: 25px;
+                        margin-bottom: 20px;
+                        width: 350px;
                     }
 
                `}</style>
             </>
         )
+    }
 }
 const mapStateToProps = (state) => ({
     auth : state.auth

@@ -3,9 +3,32 @@ import {SearchOutlined, Notifications} from '@material-ui/icons'
 import {Grid} from '@material-ui/core'
 import {Star} from '@material-ui/icons'
 import colors from '../../tools/colors'
+import {connect} from 'react-redux'
 
 const CardMovie = (props) => {
-  const {data} = props
+  const {data, movie} = props
+  var selectGenre = [];
+  const genre = data.genre_ids;
+  movie.genre.map((gnr) => {
+    genre.map((gnr2) => {
+      if(gnr2 === gnr.id){
+        selectGenre.push(gnr.name)
+      }
+    })
+  })
+  var genres = ''
+  if(selectGenre.length > 0){
+      for(var i = 0; i < selectGenre.length; i++){
+        if(i !== selectGenre - 1){
+          genres += selectGenre[i]+','
+        }else{
+          genres += selectGenre[i]
+        }
+        if(i === 1){
+          break;
+        }
+      }
+  }
   const imageUrl = process.env.MOVIE_IMAGE_URL+data.poster_path
   const title = JSON.stringify(data.title)
   const fontSizeTitle = () => {
@@ -28,7 +51,7 @@ const CardMovie = (props) => {
         </Grid>
         <Grid xs={12} sm={12} md={12} lg={12} xl={12} item>
           <div className="detail-movie">
-            <p className="genre-date">Action, scifi | {data.release_date}</p>
+            <p className="genre-date">{genres.length > 0 && genres} | {data.release_date}</p>
             <p className="title-movie" style={{fontSize : fontSizeTitle(), width : 190}}>{data.title}</p>
             <p className="rating-movie"><Star style={{color : colors.yellow2, fontSize : 12}} /> &nbsp;{data.vote_average}/10</p>
           </div>
@@ -85,4 +108,9 @@ const CardMovie = (props) => {
     </Grid>
   )
 }
-export default CardMovie
+
+const mapStateToProps = (state) => ({
+  movie : state.movie
+})
+
+export default connect(mapStateToProps)(CardMovie)

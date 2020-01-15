@@ -1,4 +1,4 @@
-import {GET_GENRE, POST_ACTIVE_GENRE, GET_MOVIE_GENRE} from '../constan/movie'
+import {GET_GENRE, POST_ACTIVE_GENRE, GET_MOVIE_GENRE, GET_TRENDING_MOVIE} from '../constan/movie'
 
 const initialState = {
     genre : [],
@@ -8,7 +8,8 @@ const initialState = {
     activeGenre : '',
     isLoading : false,
     isFinish : false,
-    isError : false
+    isError : false,
+    trendingMovies : []
 };
 
 export default (state = initialState, action) => {
@@ -64,6 +65,25 @@ export default (state = initialState, action) => {
     }
 
     case GET_MOVIE_GENRE+'_REJECTED' : 
+        return {
+        ...state, isError : true,
+
+        }
+
+    //get movie trending
+
+    case GET_TRENDING_MOVIE+'_PENDING' : 
+      return {
+        ...state, isLoading : true
+      }
+
+    case GET_TRENDING_MOVIE+'_FULFILLED' : 
+        return {
+        ...state, isLoading : false, isFinish : true,
+        trendingMovies : action.payload.data
+    }
+
+    case GET_TRENDING_MOVIE+'_REJECTED' : 
         return {
         ...state, isError : true,
 

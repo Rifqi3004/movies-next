@@ -26,7 +26,7 @@ class ListMovieGenre extends React.Component {
                             (moviesGenre !== '')&&
                                 (moviesGenre.results.length > 0) &&
                                 moviesGenre.results.map(value => (
-                                    <Grid item key={value.id} xs={12} sm={12} md={6} lg={3} xl={3}>
+                                    <Grid item key={value.id} xs={12} sm={12} md={6} lg={2} xl={2}>
                                         <Link color="inherit" underline="none">
                                             <CardMovie data={value} />
                                         </Link>

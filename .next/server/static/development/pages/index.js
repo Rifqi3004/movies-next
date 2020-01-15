@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -113,6 +113,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _tools_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../tools/colors */ "./tools/colors.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
 
 var _jsxFileName = "/Users/macbook/Works/me/tes/movieaja/components/CardMovie/index.js";
 
@@ -123,10 +125,37 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
 
+
 const CardMovie = props => {
   const {
-    data
+    data,
+    movie
   } = props;
+  var selectGenre = [];
+  const genre = data.genre_ids;
+  movie.genre.map(gnr => {
+    genre.map(gnr2 => {
+      if (gnr2 === gnr.id) {
+        selectGenre.push(gnr.name);
+      }
+    });
+  });
+  var genres = '';
+
+  if (selectGenre.length > 0) {
+    for (var i = 0; i < selectGenre.length; i++) {
+      if (i !== selectGenre - 1) {
+        genres += selectGenre[i] + ',';
+      } else {
+        genres += selectGenre[i];
+      }
+
+      if (i === 1) {
+        break;
+      }
+    }
+  }
+
   const imageUrl = "https://image.tmdb.org/t/p/original" + data.poster_path;
 
   const title = _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data.title);
@@ -148,7 +177,7 @@ const CardMovie = props => {
     spacing: 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 46
     },
     __self: undefined
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
@@ -160,14 +189,14 @@ const CardMovie = props => {
     item: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 47
     },
     __self: undefined
   }, __jsx("div", {
     className: "jsx-1316720418" + " " + "img-movie-div",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 48
     },
     __self: undefined
   }, __jsx("img", {
@@ -175,7 +204,7 @@ const CardMovie = props => {
     className: "jsx-1316720418" + " " + "img-movie",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 49
     },
     __self: undefined
   }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
@@ -187,24 +216,24 @@ const CardMovie = props => {
     item: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 52
     },
     __self: undefined
   }, __jsx("div", {
     className: "jsx-1316720418" + " " + "detail-movie",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 53
     },
     __self: undefined
   }, __jsx("p", {
     className: "jsx-1316720418" + " " + "genre-date",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 54
     },
     __self: undefined
-  }, "Action, scifi | ", data.release_date), __jsx("p", {
+  }, genres.length > 0 && genres, " | ", data.release_date), __jsx("p", {
     style: {
       fontSize: fontSizeTitle(),
       width: 190
@@ -212,14 +241,14 @@ const CardMovie = props => {
     className: "jsx-1316720418" + " " + "title-movie",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 55
     },
     __self: undefined
   }, data.title), __jsx("p", {
     className: "jsx-1316720418" + " " + "rating-movie",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 56
     },
     __self: undefined
   }, __jsx(_material_ui_icons__WEBPACK_IMPORTED_MODULE_3__["Star"], {
@@ -229,16 +258,20 @@ const CardMovie = props => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 56
     },
     __self: undefined
   }), " \xA0", data.vote_average, "/10"))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a, {
     id: "1316720418",
     __self: undefined
-  }, ".container-CardMovie.jsx-1316720418{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font-family:Poppins;}.img-movie-div.jsx-1316720418{height:200px;width:125px;border-radius:10px;}.img-movie.jsx-1316720418{height:200px;width:125px;border-radius:10px;}.detail-movie.jsx-1316720418{width :200px;}.genre-date.jsx-1316720418{font-size:10px;font-weight:400;font-family:Poppins;width:200px;margin-bottom :-10px;}.title-movie.jsx-1316720418{font-weight:700;font-family:Poppins;widht:190px;margin-bottom :-10px;}.rating-movie.jsx-1316720418{font-size:10px;font-weight:700;font-family:Poppins;line-height :5px;}.p-movie.jsx-1316720418{-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto;widht:200px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWNib29rL1dvcmtzL21lL3Rlcy9tb3ZpZWFqYS9jb21wb25lbnRzL0NhcmRNb3ZpZS9pbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtQ29CLEFBRzhCLEFBS0osQUFPQSxBQU1BLEFBR0UsQUFPQyxBQU1ELEFBTUYsYUFsQ0QsQUFPQSxBQU1kLEVBR2tCLEFBYUEsQ0FOSSxTQXRCRCxBQU9BLE1BU0MsQUFhQSxLQU5SLFFBckJkLEFBTUEsSUFpQkQsR0FSZSxBQWFLLFlBWHBCLEtBWUMsQ0FOQSxBQVVELEtBekM0QixPQXlDM0IsR0FoQkEsb0VBeEIwQixvQkFDMUIiLCJmaWxlIjoiL1VzZXJzL21hY2Jvb2svV29ya3MvbWUvdGVzL21vdmllYWphL2NvbXBvbmVudHMvQ2FyZE1vdmllL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHtTZWFyY2hPdXRsaW5lZCwgTm90aWZpY2F0aW9uc30gZnJvbSAnQG1hdGVyaWFsLXVpL2ljb25zJ1xuaW1wb3J0IHtHcmlkfSBmcm9tICdAbWF0ZXJpYWwtdWkvY29yZSdcbmltcG9ydCB7U3Rhcn0gZnJvbSAnQG1hdGVyaWFsLXVpL2ljb25zJ1xuaW1wb3J0IGNvbG9ycyBmcm9tICcuLi8uLi90b29scy9jb2xvcnMnXG5cbmNvbnN0IENhcmRNb3ZpZSA9IChwcm9wcykgPT4ge1xuICBjb25zdCB7ZGF0YX0gPSBwcm9wc1xuICBjb25zdCBpbWFnZVVybCA9IHByb2Nlc3MuZW52Lk1PVklFX0lNQUdFX1VSTCtkYXRhLnBvc3Rlcl9wYXRoXG4gIGNvbnN0IHRpdGxlID0gSlNPTi5zdHJpbmdpZnkoZGF0YS50aXRsZSlcbiAgY29uc3QgZm9udFNpemVUaXRsZSA9ICgpID0+IHtcbiAgICBpZih0aXRsZS5sZW5ndGggPiA1MCl7XG4gICAgICByZXR1cm4gMTBcbiAgICB9ZWxzZSBpZih0aXRsZS5sZW5ndGggPiAyMCl7XG4gICAgICByZXR1cm4gMTJcbiAgICB9ZWxzZSBpZih0aXRsZS5sZW5ndGggPiAxMCl7XG4gICAgICByZXR1cm4gMTRcbiAgICB9ZWxzZXtcbiAgICAgIHJldHVybiAxNlxuICAgIH1cbiAgfVxuICByZXR1cm4gKFxuICAgIDxHcmlkIGNvbnRhaW5lciBzcGFjaW5nPXsxfT5cbiAgICAgICAgPEdyaWQgeHM9ezEyfSBzbT17MTJ9IG1kPXsxMn0gbGc9ezEyfSB4bD17MTJ9IGl0ZW0+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbWctbW92aWUtZGl2XCI+XG4gICAgICAgICAgICA8aW1nIHNyYz17aW1hZ2VVcmx9IGNsYXNzTmFtZT1cImltZy1tb3ZpZVwiIC8+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvR3JpZD5cbiAgICAgICAgPEdyaWQgeHM9ezEyfSBzbT17MTJ9IG1kPXsxMn0gbGc9ezEyfSB4bD17MTJ9IGl0ZW0+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJkZXRhaWwtbW92aWVcIj5cbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cImdlbnJlLWRhdGVcIj5BY3Rpb24sIHNjaWZpIHwge2RhdGEucmVsZWFzZV9kYXRlfTwvcD5cbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cInRpdGxlLW1vdmllXCIgc3R5bGU9e3tmb250U2l6ZSA6IGZvbnRTaXplVGl0bGUoKSwgd2lkdGggOiAxOTB9fT57ZGF0YS50aXRsZX08L3A+XG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJyYXRpbmctbW92aWVcIj48U3RhciBzdHlsZT17e2NvbG9yIDogY29sb3JzLnllbGxvdzIsIGZvbnRTaXplIDogMTJ9fSAvPiAmbmJzcDt7ZGF0YS52b3RlX2F2ZXJhZ2V9LzEwPC9wPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L0dyaWQ+XG4gICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICAuY29udGFpbmVyLUNhcmRNb3ZpZSB7XG4gICAgICAgICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICAgICAgICBmbGV4LWRpcmVjdGlvbjpjb2x1bW47XG4gICAgICAgICAgICAgICAgZm9udC1mYW1pbHk6IFBvcHBpbnM7XG4gICAgICAgICAgfVxuICAgICAgICAgIC5pbWctbW92aWUtZGl2IHtcbiAgICAgICAgICAgIGhlaWdodDogMjAwcHg7XG4gICAgICAgICAgICB3aWR0aDogMTI1cHg7XG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xuXG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLmltZy1tb3ZpZSB7XG4gICAgICAgICAgICBoZWlnaHQ6IDIwMHB4O1xuICAgICAgICAgICAgd2lkdGg6IDEyNXB4O1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcbiAgICAgICAgICB9XG5cbiAgICAgICAgICAuZGV0YWlsLW1vdmllIHtcbiAgICAgICAgICAgIHdpZHRoIDogMjAwcHg7XG4gICAgICAgICAgfVxuICAgICAgICAgIC5nZW5yZS1kYXRlIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTBweDtcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA0MDA7XG4gICAgICAgICAgICBmb250LWZhbWlseTogUG9wcGlucztcbiAgICAgICAgICAgIHdpZHRoOiAyMDBweDtcbiAgICAgICAgICAgIG1hcmdpbi1ib3R0b20gOiAtMTBweFxuICAgICAgICAgIH1cbiAgICAgICAgICAudGl0bGUtbW92aWUge1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgICAgd2lkaHQ6IDE5MHB4O1xuICAgICAgICAgICAgbWFyZ2luLWJvdHRvbSA6IC0xMHB4XG4gICAgICAgICAgfVxuICAgICAgICAgIC5yYXRpbmctbW92aWUge1xuICAgICAgICAgICAgZm9udC1zaXplOiAxMHB4O1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgICAgbGluZS1oZWlnaHQgOiA1cHg7XG4gICAgICAgICAgfVxuICAgICAgICAgIC5wLW1vdmllIHtcbiAgICAgICAgICAgIGh5cGhlbnM6IGF1dG87XG4gICAgICAgICAgICB3aWRodDoyMDBweFxuICAgICAgICAgIH1cblxuXG5cbiAgICAgICAgICBgfTwvc3R5bGU+XG4gICAgPC9HcmlkPlxuICApXG59XG5leHBvcnQgZGVmYXVsdCBDYXJkTW92aWVcbiJdfQ== */\n/*@ sourceURL=/Users/macbook/Works/me/tes/movieaja/components/CardMovie/index.js */"));
+  }, ".container-CardMovie.jsx-1316720418{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font-family:Poppins;}.img-movie-div.jsx-1316720418{height:200px;width:125px;border-radius:10px;}.img-movie.jsx-1316720418{height:200px;width:125px;border-radius:10px;}.detail-movie.jsx-1316720418{width :200px;}.genre-date.jsx-1316720418{font-size:10px;font-weight:400;font-family:Poppins;width:200px;margin-bottom :-10px;}.title-movie.jsx-1316720418{font-weight:700;font-family:Poppins;widht:190px;margin-bottom :-10px;}.rating-movie.jsx-1316720418{font-size:10px;font-weight:700;font-family:Poppins;line-height :5px;}.p-movie.jsx-1316720418{-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto;widht:200px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWNib29rL1dvcmtzL21lL3Rlcy9tb3ZpZWFqYS9jb21wb25lbnRzL0NhcmRNb3ZpZS9pbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwRG9CLEFBRzhCLEFBS0osQUFPQSxBQU1BLEFBR0UsQUFPQyxBQU1ELEFBTUYsYUFsQ0QsQUFPQSxBQU1kLEVBR2tCLEFBYUEsQ0FOSSxTQXRCRCxBQU9BLE1BU0MsQUFhQSxLQU5SLFFBckJkLEFBTUEsSUFpQkQsR0FSZSxBQWFLLFlBWHBCLEtBWUMsQ0FOQSxBQVVELEtBekM0QixPQXlDM0IsR0FoQkEsb0VBeEIwQixvQkFDMUIiLCJmaWxlIjoiL1VzZXJzL21hY2Jvb2svV29ya3MvbWUvdGVzL21vdmllYWphL2NvbXBvbmVudHMvQ2FyZE1vdmllL2luZGV4LmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0J1xuaW1wb3J0IHtTZWFyY2hPdXRsaW5lZCwgTm90aWZpY2F0aW9uc30gZnJvbSAnQG1hdGVyaWFsLXVpL2ljb25zJ1xuaW1wb3J0IHtHcmlkfSBmcm9tICdAbWF0ZXJpYWwtdWkvY29yZSdcbmltcG9ydCB7U3Rhcn0gZnJvbSAnQG1hdGVyaWFsLXVpL2ljb25zJ1xuaW1wb3J0IGNvbG9ycyBmcm9tICcuLi8uLi90b29scy9jb2xvcnMnXG5pbXBvcnQge2Nvbm5lY3R9IGZyb20gJ3JlYWN0LXJlZHV4J1xuXG5jb25zdCBDYXJkTW92aWUgPSAocHJvcHMpID0+IHtcbiAgY29uc3Qge2RhdGEsIG1vdmllfSA9IHByb3BzXG4gIHZhciBzZWxlY3RHZW5yZSA9IFtdO1xuICBjb25zdCBnZW5yZSA9IGRhdGEuZ2VucmVfaWRzO1xuICBtb3ZpZS5nZW5yZS5tYXAoKGducikgPT4ge1xuICAgIGdlbnJlLm1hcCgoZ25yMikgPT4ge1xuICAgICAgaWYoZ25yMiA9PT0gZ25yLmlkKXtcbiAgICAgICAgc2VsZWN0R2VucmUucHVzaChnbnIubmFtZSlcbiAgICAgIH1cbiAgICB9KVxuICB9KVxuICB2YXIgZ2VucmVzID0gJydcbiAgaWYoc2VsZWN0R2VucmUubGVuZ3RoID4gMCl7XG4gICAgICBmb3IodmFyIGkgPSAwOyBpIDwgc2VsZWN0R2VucmUubGVuZ3RoOyBpKyspe1xuICAgICAgICBpZihpICE9PSBzZWxlY3RHZW5yZSAtIDEpe1xuICAgICAgICAgIGdlbnJlcyArPSBzZWxlY3RHZW5yZVtpXSsnLCdcbiAgICAgICAgfWVsc2V7XG4gICAgICAgICAgZ2VucmVzICs9IHNlbGVjdEdlbnJlW2ldXG4gICAgICAgIH1cbiAgICAgICAgaWYoaSA9PT0gMSl7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgfVxuICBjb25zdCBpbWFnZVVybCA9IHByb2Nlc3MuZW52Lk1PVklFX0lNQUdFX1VSTCtkYXRhLnBvc3Rlcl9wYXRoXG4gIGNvbnN0IHRpdGxlID0gSlNPTi5zdHJpbmdpZnkoZGF0YS50aXRsZSlcbiAgY29uc3QgZm9udFNpemVUaXRsZSA9ICgpID0+IHtcbiAgICBpZih0aXRsZS5sZW5ndGggPiA1MCl7XG4gICAgICByZXR1cm4gMTBcbiAgICB9ZWxzZSBpZih0aXRsZS5sZW5ndGggPiAyMCl7XG4gICAgICByZXR1cm4gMTJcbiAgICB9ZWxzZSBpZih0aXRsZS5sZW5ndGggPiAxMCl7XG4gICAgICByZXR1cm4gMTRcbiAgICB9ZWxzZXtcbiAgICAgIHJldHVybiAxNlxuICAgIH1cbiAgfVxuICByZXR1cm4gKFxuICAgIDxHcmlkIGNvbnRhaW5lciBzcGFjaW5nPXsxfT5cbiAgICAgICAgPEdyaWQgeHM9ezEyfSBzbT17MTJ9IG1kPXsxMn0gbGc9ezEyfSB4bD17MTJ9IGl0ZW0+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJpbWctbW92aWUtZGl2XCI+XG4gICAgICAgICAgICA8aW1nIHNyYz17aW1hZ2VVcmx9IGNsYXNzTmFtZT1cImltZy1tb3ZpZVwiIC8+XG4gICAgICAgICAgPC9kaXY+XG4gICAgICAgIDwvR3JpZD5cbiAgICAgICAgPEdyaWQgeHM9ezEyfSBzbT17MTJ9IG1kPXsxMn0gbGc9ezEyfSB4bD17MTJ9IGl0ZW0+XG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJkZXRhaWwtbW92aWVcIj5cbiAgICAgICAgICAgIDxwIGNsYXNzTmFtZT1cImdlbnJlLWRhdGVcIj57Z2VucmVzLmxlbmd0aCA+IDAgJiYgZ2VucmVzfSB8IHtkYXRhLnJlbGVhc2VfZGF0ZX08L3A+XG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJ0aXRsZS1tb3ZpZVwiIHN0eWxlPXt7Zm9udFNpemUgOiBmb250U2l6ZVRpdGxlKCksIHdpZHRoIDogMTkwfX0+e2RhdGEudGl0bGV9PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwicmF0aW5nLW1vdmllXCI+PFN0YXIgc3R5bGU9e3tjb2xvciA6IGNvbG9ycy55ZWxsb3cyLCBmb250U2l6ZSA6IDEyfX0gLz4gJm5ic3A7e2RhdGEudm90ZV9hdmVyYWdlfS8xMDwvcD5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9HcmlkPlxuICAgICAgICA8c3R5bGUganN4PntgXG4gICAgICAgICAgLmNvbnRhaW5lci1DYXJkTW92aWUge1xuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgICAgICAgICAgZmxleC1kaXJlY3Rpb246Y29sdW1uO1xuICAgICAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgIH1cbiAgICAgICAgICAuaW1nLW1vdmllLWRpdiB7XG4gICAgICAgICAgICBoZWlnaHQ6IDIwMHB4O1xuICAgICAgICAgICAgd2lkdGg6IDEyNXB4O1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcblxuICAgICAgICAgIH1cblxuICAgICAgICAgIC5pbWctbW92aWUge1xuICAgICAgICAgICAgaGVpZ2h0OiAyMDBweDtcbiAgICAgICAgICAgIHdpZHRoOiAxMjVweDtcbiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLmRldGFpbC1tb3ZpZSB7XG4gICAgICAgICAgICB3aWR0aCA6IDIwMHB4O1xuICAgICAgICAgIH1cbiAgICAgICAgICAuZ2VucmUtZGF0ZSB7XG4gICAgICAgICAgICBmb250LXNpemU6IDEwcHg7XG4gICAgICAgICAgICBmb250LXdlaWdodDogNDAwO1xuICAgICAgICAgICAgZm9udC1mYW1pbHk6IFBvcHBpbnM7XG4gICAgICAgICAgICB3aWR0aDogMjAwcHg7XG4gICAgICAgICAgICBtYXJnaW4tYm90dG9tIDogLTEwcHhcbiAgICAgICAgICB9XG4gICAgICAgICAgLnRpdGxlLW1vdmllIHtcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA3MDA7XG4gICAgICAgICAgICBmb250LWZhbWlseTogUG9wcGlucztcbiAgICAgICAgICAgIHdpZGh0OiAxOTBweDtcbiAgICAgICAgICAgIG1hcmdpbi1ib3R0b20gOiAtMTBweFxuICAgICAgICAgIH1cbiAgICAgICAgICAucmF0aW5nLW1vdmllIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTBweDtcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA3MDA7XG4gICAgICAgICAgICBmb250LWZhbWlseTogUG9wcGlucztcbiAgICAgICAgICAgIGxpbmUtaGVpZ2h0IDogNXB4O1xuICAgICAgICAgIH1cbiAgICAgICAgICAucC1tb3ZpZSB7XG4gICAgICAgICAgICBoeXBoZW5zOiBhdXRvO1xuICAgICAgICAgICAgd2lkaHQ6MjAwcHhcbiAgICAgICAgICB9XG5cblxuXG4gICAgICAgICAgYH08L3N0eWxlPlxuICAgIDwvR3JpZD5cbiAgKVxufVxuXG5jb25zdCBtYXBTdGF0ZVRvUHJvcHMgPSAoc3RhdGUpID0+ICh7XG4gIG1vdmllIDogc3RhdGUubW92aWVcbn0pXG5cbmV4cG9ydCBkZWZhdWx0IGNvbm5lY3QobWFwU3RhdGVUb1Byb3BzKShDYXJkTW92aWUpXG4iXX0= */\n/*@ sourceURL=/Users/macbook/Works/me/tes/movieaja/components/CardMovie/index.js */"));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (CardMovie);
+const mapStateToProps = state => ({
+  movie: state.movie
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps)(CardMovie));
 
 /***/ }),
 
@@ -391,8 +424,8 @@ class ListMovieGenre extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Compon
       xs: 12,
       sm: 12,
       md: 6,
-      lg: 3,
-      xl: 3,
+      lg: 2,
+      xl: 2,
       __source: {
         fileName: _jsxFileName,
         lineNumber: 29
@@ -1487,7 +1520,7 @@ class index extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 /*!********************************!*\
   !*** ./redux/actions/movie.js ***!
   \********************************/
-/*! exports provided: GetGenre, PostActiveGenre, GetMovieGenre */
+/*! exports provided: GetGenre, PostActiveGenre, GetMovieGenre, GetTrendingMovie */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1495,6 +1528,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetGenre", function() { return GetGenre; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostActiveGenre", function() { return PostActiveGenre; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetMovieGenre", function() { return GetMovieGenre; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetTrendingMovie", function() { return GetTrendingMovie; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constan_movie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constan/movie */ "./redux/constan/movie.js");
@@ -1513,6 +1547,10 @@ const PostActiveGenre = genre => ({
 const GetMovieGenre = (genreId, page = 1) => ({
   type: _constan_movie__WEBPACK_IMPORTED_MODULE_1__["GET_MOVIE_GENRE"],
   payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.themoviedb.org/3" + _constan_api__WEBPACK_IMPORTED_MODULE_2__["GET_MOVIE_GENRE_API"] + '?api_key=' + "f2313f458f08d820fae16b7ea4c5ad70" + '&with_genres=' + genreId + '&page=' + page)
+});
+const GetTrendingMovie = (time = 'week', page = 1) => ({
+  type: _constan_movie__WEBPACK_IMPORTED_MODULE_1__["GET_TRENDING_MOVIE"],
+  payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.themoviedb.org/3" + _constan_api__WEBPACK_IMPORTED_MODULE_2__["GET_MOVIE_TRENDING_API"] + time + '?api_key=' + "f2313f458f08d820fae16b7ea4c5ad70" + '&page=' + page)
 });
 
 /***/ }),
@@ -1540,7 +1578,7 @@ const openMenu = page => ({
 /*!******************************!*\
   !*** ./redux/constan/api.js ***!
   \******************************/
-/*! exports provided: GET_GENRE_API, GET_MOVIE_GENRE_API, MOVIE_IMAGE */
+/*! exports provided: GET_GENRE_API, GET_MOVIE_GENRE_API, MOVIE_IMAGE, AUTH_GET_REQ_TOKEN, AUTH_VALIDATE_LOGIN, AUTH_GET_SESSION_TOKEN, GET_MOVIE_TRENDING_API */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1548,9 +1586,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_GENRE_API", function() { return GET_GENRE_API; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_GENRE_API", function() { return GET_MOVIE_GENRE_API; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MOVIE_IMAGE", function() { return MOVIE_IMAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_GET_REQ_TOKEN", function() { return AUTH_GET_REQ_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_VALIDATE_LOGIN", function() { return AUTH_VALIDATE_LOGIN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_GET_SESSION_TOKEN", function() { return AUTH_GET_SESSION_TOKEN; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_TRENDING_API", function() { return GET_MOVIE_TRENDING_API; });
 const GET_GENRE_API = '/genre/movie/list';
 const GET_MOVIE_GENRE_API = '/discover/movie/';
 const MOVIE_IMAGE = 'https://image.tmdb.org/t/p/original/';
+const AUTH_GET_REQ_TOKEN = '/authentication/token/new';
+const AUTH_VALIDATE_LOGIN = '/authentication/token/validate_with_login';
+const AUTH_GET_SESSION_TOKEN = '/authentication/session/new';
+const GET_MOVIE_TRENDING_API = '/trending/movie/';
 
 /***/ }),
 
@@ -1572,7 +1618,7 @@ const OPEN_MENU = 'OPEN_MENU';
 /*!********************************!*\
   !*** ./redux/constan/movie.js ***!
   \********************************/
-/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE */
+/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1582,11 +1628,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_SHOW", function() { return GET_MOVIE_SHOW; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_DETAIL", function() { return GET_MOVIE_DETAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POST_ACTIVE_GENRE", function() { return POST_ACTIVE_GENRE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRENDING_MOVIE", function() { return GET_TRENDING_MOVIE; });
 const GET_GENRE = 'GET_GENRE';
 const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
 const GET_MOVIE_SHOW = 'GET_MOVIE_SHOW';
 const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
 const POST_ACTIVE_GENRE = 'GET_ACTIVE_GENRE';
+const GET_TRENDING_MOVIE = 'GET_TRENDING_MOVIE';
 
 /***/ }),
 
@@ -1604,12 +1652,14 @@ __webpack_require__.r(__webpack_exports__);
   purplePrimay: '#a1a1a1',
   orangePrimary: '#e07408',
   yellow1: '#dbb006',
-  yellow2: '#ffe502'
+  yellow2: '#ffe502',
+  blue1: '#b6d9f9',
+  blue2: '#4ea4f4'
 });
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
