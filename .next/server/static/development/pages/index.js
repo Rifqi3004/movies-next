@@ -88,10 +88,197 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/CardMovie/SliderCardMovie.js":
+/*!*************************************************!*\
+  !*** ./components/CardMovie/SliderCardMovie.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/json/stringify */ "./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-jsx/style */ "styled-jsx/style");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _material_ui_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons */ "@material-ui/icons");
+/* harmony import */ var _material_ui_icons__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _tools_colors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../tools/colors */ "./tools/colors.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_6__);
+
+var _jsxFileName = "/Users/macbook/Works/me/tes/movieaja/components/CardMovie/SliderCardMovie.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
+
+
+
+
+
+
+
+const SliderCardMovie = props => {
+  const {
+    data,
+    movie
+  } = props;
+  var selectGenre = [];
+  const genre = data.genre_ids;
+  movie.genre.map(gnr => {
+    genre.map(gnr2 => {
+      if (gnr2 === gnr.id) {
+        selectGenre.push(gnr.name);
+      }
+    });
+  });
+  var genres = '';
+
+  if (selectGenre.length > 0) {
+    for (var i = 0; i < selectGenre.length; i++) {
+      if (i !== selectGenre - 1) {
+        genres += selectGenre[i] + ',';
+      } else {
+        genres += selectGenre[i];
+      }
+
+      if (i === 1) {
+        break;
+      }
+    }
+  }
+
+  const imageUrl = "https://image.tmdb.org/t/p/original" + data.poster_path;
+
+  const title = _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_0___default()(data.title);
+
+  const fontSizeTitle = () => {
+    if (title.length > 50) {
+      return 10;
+    } else if (title.length > 20) {
+      return 12;
+    } else if (title.length > 10) {
+      return 14;
+    } else {
+      return 16;
+    }
+  };
+
+  return __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
+    container: true,
+    spacing: 1,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
+    xs: 12,
+    sm: 12,
+    md: 12,
+    lg: 12,
+    xl: 12,
+    item: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 47
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "jsx-390663189" + " " + "img-movie-div",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: undefined
+  }, __jsx("img", {
+    src: imageUrl,
+    className: "jsx-390663189" + " " + "img-movie",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 49
+    },
+    __self: undefined
+  }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["Grid"], {
+    xs: 12,
+    sm: 12,
+    md: 12,
+    lg: 12,
+    xl: 12,
+    item: true,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: undefined
+  }, __jsx("div", {
+    className: "jsx-390663189" + " " + "detail-movie",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 53
+    },
+    __self: undefined
+  }, __jsx("p", {
+    className: "jsx-390663189" + " " + "genre-date",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: undefined
+  }, genres.length > 0 && genres, " | ", data.release_date), __jsx("p", {
+    style: {
+      fontSize: 14,
+      width: 190
+    },
+    className: "jsx-390663189" + " " + "title-movie",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 55
+    },
+    __self: undefined
+  }, data.title), __jsx("p", {
+    style: {
+      position: 'absolute',
+      top: 0,
+      right: 20
+    },
+    className: "jsx-390663189" + " " + "rating-movie",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: undefined
+  }, __jsx(_material_ui_icons__WEBPACK_IMPORTED_MODULE_3__["Star"], {
+    style: {
+      color: _tools_colors__WEBPACK_IMPORTED_MODULE_5__["default"].yellow2,
+      fontSize: 16
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 56
+    },
+    __self: undefined
+  }), " \xA0", data.vote_average, "/10"))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    id: "390663189",
+    __self: undefined
+  }, ".container-SliderCardMovie.jsx-390663189{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font-family:Poppins;}.img-movie-div.jsx-390663189{height:200px;width:400px;border-radius:10px;}.img-movie.jsx-390663189{height:200px;width:400px;border-radius:10px;}.detail-movie.jsx-390663189{width:400px;position:relative;}.genre-date.jsx-390663189{font-size:12px;font-weight:400;font-family:Poppins;width:400px;margin-bottom :-10px;}.title-movie.jsx-390663189{font-weight:700;font-family:Poppins;widht:380px;margin-bottom :-10px;}.rating-movie.jsx-390663189{font-size:12px;font-weight:700;font-family:Poppins;line-height :5px;position:absolute;top:10;right:20;}.p-movie.jsx-390663189{-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;hyphens:auto;widht:400px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWNib29rL1dvcmtzL21lL3Rlcy9tb3ZpZWFqYS9jb21wb25lbnRzL0NhcmRNb3ZpZS9TbGlkZXJDYXJkTW92aWUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBMERvQixBQUc4QixBQUtKLEFBT0EsQUFNRCxBQUlHLEFBT0MsQUFNRCxBQVNGLFlBekJLLENBYk4sQUFPQSxFQVVJLEFBYUEsQ0FOSSxTQXZCRCxBQU9BLEtBTXJCLENBSXNCLEFBYUEsS0FOUixRQXRCZCxBQU1BLElBa0JELEdBUmUsQUFhSyxZQVhwQixLQVlxQixDQU5wQixBQWFELEtBN0M0QixPQTZDM0IsR0FuQkEsRUFhUyxPQUVWLFNBQUMsa0RBeEMwQixvQkFDMUIiLCJmaWxlIjoiL1VzZXJzL21hY2Jvb2svV29ya3MvbWUvdGVzL21vdmllYWphL2NvbXBvbmVudHMvQ2FyZE1vdmllL1NsaWRlckNhcmRNb3ZpZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7U2VhcmNoT3V0bGluZWQsIE5vdGlmaWNhdGlvbnN9IGZyb20gJ0BtYXRlcmlhbC11aS9pY29ucydcbmltcG9ydCB7R3JpZH0gZnJvbSAnQG1hdGVyaWFsLXVpL2NvcmUnXG5pbXBvcnQge1N0YXJ9IGZyb20gJ0BtYXRlcmlhbC11aS9pY29ucydcbmltcG9ydCBjb2xvcnMgZnJvbSAnLi4vLi4vdG9vbHMvY29sb3JzJ1xuaW1wb3J0IHtjb25uZWN0fSBmcm9tICdyZWFjdC1yZWR1eCdcblxuY29uc3QgU2xpZGVyQ2FyZE1vdmllID0gKHByb3BzKSA9PiB7XG4gIGNvbnN0IHtkYXRhLCBtb3ZpZX0gPSBwcm9wc1xuICB2YXIgc2VsZWN0R2VucmUgPSBbXTtcbiAgY29uc3QgZ2VucmUgPSBkYXRhLmdlbnJlX2lkcztcbiAgbW92aWUuZ2VucmUubWFwKChnbnIpID0+IHtcbiAgICBnZW5yZS5tYXAoKGducjIpID0+IHtcbiAgICAgIGlmKGducjIgPT09IGduci5pZCl7XG4gICAgICAgIHNlbGVjdEdlbnJlLnB1c2goZ25yLm5hbWUpXG4gICAgICB9XG4gICAgfSlcbiAgfSlcbiAgdmFyIGdlbnJlcyA9ICcnXG4gIGlmKHNlbGVjdEdlbnJlLmxlbmd0aCA+IDApe1xuICAgICAgZm9yKHZhciBpID0gMDsgaSA8IHNlbGVjdEdlbnJlLmxlbmd0aDsgaSsrKXtcbiAgICAgICAgaWYoaSAhPT0gc2VsZWN0R2VucmUgLSAxKXtcbiAgICAgICAgICBnZW5yZXMgKz0gc2VsZWN0R2VucmVbaV0rJywnXG4gICAgICAgIH1lbHNle1xuICAgICAgICAgIGdlbnJlcyArPSBzZWxlY3RHZW5yZVtpXVxuICAgICAgICB9XG4gICAgICAgIGlmKGkgPT09IDEpe1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICB9XG4gICAgICB9XG4gIH1cbiAgY29uc3QgaW1hZ2VVcmwgPSBwcm9jZXNzLmVudi5NT1ZJRV9JTUFHRV9VUkwrZGF0YS5wb3N0ZXJfcGF0aFxuICBjb25zdCB0aXRsZSA9IEpTT04uc3RyaW5naWZ5KGRhdGEudGl0bGUpXG4gIGNvbnN0IGZvbnRTaXplVGl0bGUgPSAoKSA9PiB7XG4gICAgaWYodGl0bGUubGVuZ3RoID4gNTApe1xuICAgICAgcmV0dXJuIDEwXG4gICAgfWVsc2UgaWYodGl0bGUubGVuZ3RoID4gMjApe1xuICAgICAgcmV0dXJuIDEyXG4gICAgfWVsc2UgaWYodGl0bGUubGVuZ3RoID4gMTApe1xuICAgICAgcmV0dXJuIDE0XG4gICAgfWVsc2V7XG4gICAgICByZXR1cm4gMTZcbiAgICB9XG4gIH1cbiAgcmV0dXJuIChcbiAgICA8R3JpZCBjb250YWluZXIgc3BhY2luZz17MX0+XG4gICAgICAgIDxHcmlkIHhzPXsxMn0gc209ezEyfSBtZD17MTJ9IGxnPXsxMn0geGw9ezEyfSBpdGVtPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaW1nLW1vdmllLWRpdlwiPlxuICAgICAgICAgICAgPGltZyBzcmM9e2ltYWdlVXJsfSBjbGFzc05hbWU9XCJpbWctbW92aWVcIiAvPlxuICAgICAgICAgIDwvZGl2PlxuICAgICAgICA8L0dyaWQ+XG4gICAgICAgIDxHcmlkIHhzPXsxMn0gc209ezEyfSBtZD17MTJ9IGxnPXsxMn0geGw9ezEyfSBpdGVtPlxuICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiZGV0YWlsLW1vdmllXCI+XG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJnZW5yZS1kYXRlXCI+e2dlbnJlcy5sZW5ndGggPiAwICYmIGdlbnJlc30gfCB7ZGF0YS5yZWxlYXNlX2RhdGV9PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGl0bGUtbW92aWVcIiBzdHlsZT17e2ZvbnRTaXplIDogMTQsIHdpZHRoIDogMTkwfX0+e2RhdGEudGl0bGV9PC9wPlxuICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwicmF0aW5nLW1vdmllXCIgc3R5bGU9e3twb3NpdGlvbiA6J2Fic29sdXRlJyx0b3AgOiAwLCByaWdodCA6IDIwfX0+PFN0YXIgc3R5bGU9e3tjb2xvciA6IGNvbG9ycy55ZWxsb3cyLCBmb250U2l6ZSA6IDE2fX0gLz4gJm5ic3A7e2RhdGEudm90ZV9hdmVyYWdlfS8xMDwvcD5cbiAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgPC9HcmlkPlxuICAgICAgICA8c3R5bGUganN4PntgXG4gICAgICAgICAgLmNvbnRhaW5lci1TbGlkZXJDYXJkTW92aWUge1xuICAgICAgICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgICAgICAgICAgZmxleC1kaXJlY3Rpb246Y29sdW1uO1xuICAgICAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgIH1cbiAgICAgICAgICAuaW1nLW1vdmllLWRpdiB7XG4gICAgICAgICAgICBoZWlnaHQ6IDIwMHB4O1xuICAgICAgICAgICAgd2lkdGg6IDQwMHB4O1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcblxuICAgICAgICAgIH1cblxuICAgICAgICAgIC5pbWctbW92aWUge1xuICAgICAgICAgICAgaGVpZ2h0OiAyMDBweDtcbiAgICAgICAgICAgIHdpZHRoOiA0MDBweDtcbiAgICAgICAgICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLmRldGFpbC1tb3ZpZSB7XG4gICAgICAgICAgICB3aWR0aDogNDAwcHg7XG4gICAgICAgICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICAgICAgfVxuICAgICAgICAgIC5nZW5yZS1kYXRlIHtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgICAgICAgIGZvbnQtd2VpZ2h0OiA0MDA7XG4gICAgICAgICAgICBmb250LWZhbWlseTogUG9wcGlucztcbiAgICAgICAgICAgIHdpZHRoOiA0MDBweDtcbiAgICAgICAgICAgIG1hcmdpbi1ib3R0b20gOiAtMTBweFxuICAgICAgICAgIH1cbiAgICAgICAgICAudGl0bGUtbW92aWUge1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgICAgd2lkaHQ6IDM4MHB4O1xuICAgICAgICAgICAgbWFyZ2luLWJvdHRvbSA6IC0xMHB4XG4gICAgICAgICAgfVxuICAgICAgICAgIC5yYXRpbmctbW92aWUge1xuICAgICAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDcwMDtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBQb3BwaW5zO1xuICAgICAgICAgICAgbGluZS1oZWlnaHQgOiA1cHg7XG4gICAgICAgICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICAgICAgICB0b3A6IDEwO1xuICAgICAgICAgICAgcmlnaHQ6IDIwXG4gICAgICAgICAgfVxuICAgICAgICAgIC5wLW1vdmllIHtcbiAgICAgICAgICAgIGh5cGhlbnM6IGF1dG87XG4gICAgICAgICAgICB3aWRodDo0MDBweFxuICAgICAgICAgIH1cblxuXG5cbiAgICAgICAgICBgfTwvc3R5bGU+XG4gICAgPC9HcmlkPlxuICApXG59XG5cbmNvbnN0IG1hcFN0YXRlVG9Qcm9wcyA9IChzdGF0ZSkgPT4gKHtcbiAgbW92aWUgOiBzdGF0ZS5tb3ZpZVxufSlcblxuZXhwb3J0IGRlZmF1bHQgY29ubmVjdChtYXBTdGF0ZVRvUHJvcHMpKFNsaWRlckNhcmRNb3ZpZSlcbiJdfQ== */\n/*@ sourceURL=/Users/macbook/Works/me/tes/movieaja/components/CardMovie/SliderCardMovie.js */"));
+};
+
+const mapStateToProps = state => ({
+  movie: state.movie
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps)(SliderCardMovie));
+
+/***/ }),
 
 /***/ "./components/CardMovie/index.js":
 /*!***************************************!*\
@@ -501,6 +688,11 @@ class MenuGenre extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     this.props.dispatch(Object(_redux_actions_movie__WEBPACK_IMPORTED_MODULE_4__["GetMovieGenre"])(this.props.movie.activeGenre.id, 1));
   }
 
+  async getMovie(genre, page) {
+    await this.props.dispatch(Object(_redux_actions_movie__WEBPACK_IMPORTED_MODULE_4__["PostActiveGenre"])(genre));
+    await this.props.dispatch(Object(_redux_actions_movie__WEBPACK_IMPORTED_MODULE_4__["GetMovieGenre"])(genre.id, page));
+  }
+
   render() {
     const {
       activeGenre,
@@ -511,7 +703,7 @@ class MenuGenre extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       spacing: 2,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 29
       },
       __self: this
     }, genre.length > 0 && genre.map(value => __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Grid"], {
@@ -519,16 +711,16 @@ class MenuGenre extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       key: value.id,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 33
       },
       __self: this
     }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Link"], {
       color: "inherit",
       underline: "none",
-      onClick: () => this.props.dispatch(Object(_redux_actions_movie__WEBPACK_IMPORTED_MODULE_4__["GetMovieGenre"])(value.id, 1)),
+      onClick: () => this.getMovie(value, 1),
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 30
+        lineNumber: 34
       },
       __self: this
     }, __jsx(_ItemMenuGenre__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -536,7 +728,7 @@ class MenuGenre extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       active: value.name === activeGenre.name ? true : false,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 31
+        lineNumber: 35
       },
       __self: this
     }))))));
@@ -1142,14 +1334,30 @@ Layout.propTypes = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "styled-jsx/style");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_id_swiper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-id-swiper */ "react-id-swiper");
-/* harmony import */ var react_id_swiper__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_id_swiper__WEBPACK_IMPORTED_MODULE_2__);
-
+/* harmony import */ var react_responsive_carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-responsive-carousel */ "react-responsive-carousel");
+/* harmony import */ var react_responsive_carousel__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_responsive_carousel__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _CardMovie_SliderCardMovie__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../CardMovie/SliderCardMovie */ "./components/CardMovie/SliderCardMovie.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "react-redux");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _redux_actions_movie__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../redux/actions/movie */ "./redux/actions/movie.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/icons */ "@material-ui/icons");
+/* harmony import */ var _material_ui_icons__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _tools_colors__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../tools/colors */ "./tools/colors.js");
 var _jsxFileName = "/Users/macbook/Works/me/tes/movieaja/components/Slider/index.js";
+
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+
 
 
 
@@ -1157,64 +1365,151 @@ class Slider extends react__WEBPACK_IMPORTED_MODULE_1___default.a.Component {
   constructor(props) {
     super(props);
     this.state = {
-      param: {
-        pagination: {
-          el: '.swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        },
-        spaceBetween: 30
-      }
-    };
+      scroll: 0
+    }; // this.scroll = this.scroll.bind(this)
+
+    this.scrollRight = this.scrollRight.bind(this);
+    this.scrollLefts = this.scrollLefts.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(Object(_redux_actions_movie__WEBPACK_IMPORTED_MODULE_5__["GetNowPlaying"])());
+  } // scroll(direction){
+  //     let far = $( '.box-slider' ).width()/2*direction;
+  //     $('.box-slider').scrollLeft() + far;
+  // } our
+
+
+  scrollRight() {
+    this.refs.boxSlide.scrollLeft += 400;
+    this.setState({
+      scroll: this.refs.boxSlide.scrollLeft
+    });
+  }
+
+  scrollLefts() {
+    this.refs.boxSlide.scrollLeft -= 400;
+    this.setState({
+      scroll: this.refs.boxSlide.scrollLeft
+    });
   }
 
   render() {
-    return __jsx(react_id_swiper__WEBPACK_IMPORTED_MODULE_2___default.a, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.state.param, {
+    const {
+      nowPlaying,
+      isLoadingNowPlaying
+    } = this.props.movie;
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, isLoadingNowPlaying ? __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["LinearProgress"], {
+      style: {
+        width: '100%'
+      },
+      color: "primary",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 24
+        lineNumber: 46
       },
       __self: this
-    }), __jsx("div", {
+    }) : __jsx("div", {
+      ref: "boxSlide",
+      className: "jsx-813549003" + " " + "box-slider",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 25
+        lineNumber: 47
       },
       __self: this
-    }, "Slide 1"), __jsx("div", {
+    }, nowPlaying.results && nowPlaying.results.length > 0 && nowPlaying.results.map(value => __jsx("div", {
+      className: "jsx-813549003" + " " + "item-slider",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 26
+        lineNumber: 52
       },
       __self: this
-    }, "Slide 2"), __jsx("div", {
+    }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["Link"], {
+      color: "inherit",
+      underline: "none",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 27
+        lineNumber: 53
       },
       __self: this
-    }, "Slide 3"), __jsx("div", {
+    }, __jsx(_CardMovie_SliderCardMovie__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      data: value,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 28
+        lineNumber: 54
       },
       __self: this
-    }, "Slide 4"), __jsx("div", {
+    })))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["Fab"], {
+      size: "small",
+      style: {
+        background: 'rgba(255, 255, 255, 0.78)',
+        position: 'absolute',
+        top: 200,
+        left: 350,
+        transform: 'translateY(-50%)',
+        msTransform: 'translateY(-50%)',
+        margin: 0,
+        display: this.state.scroll > 500 ? 'block' : 'none',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center'
+      },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 29
+        lineNumber: 60
       },
       __self: this
-    }, "Slide 5"));
+    }, __jsx(_material_ui_icons__WEBPACK_IMPORTED_MODULE_7__["ArrowBackIos"], {
+      style: {
+        fontSize: 18,
+        color: _tools_colors__WEBPACK_IMPORTED_MODULE_8__["default"].blackPrimary
+      },
+      onClick: this.scrollLefts,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 65
+      },
+      __self: this
+    })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_6__["Fab"], {
+      size: "small",
+      style: {
+        background: 'rgba(255, 255, 255, 0.78)',
+        position: 'absolute',
+        top: 200,
+        right: 50,
+        transform: 'translateY(-50%)',
+        msTransform: 'translateY(-50%)',
+        margin: 0
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 67
+      },
+      __self: this
+    }, __jsx(_material_ui_icons__WEBPACK_IMPORTED_MODULE_7__["ArrowForwardIos"], {
+      style: {
+        fontSize: 18,
+        color: _tools_colors__WEBPACK_IMPORTED_MODULE_8__["default"].blackPrimary
+      },
+      onClick: this.scrollRight,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 70
+      },
+      __self: this
+    }))), __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+      id: "813549003",
+      __self: this
+    }, ".box-slider.jsx-813549003{overflow:auto;overflow-y:hidden;white-space:nowrap;padding-bottom :30px;postion:relative;}.item-slider.jsx-813549003{display:inline-block;margin-right :-370px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tYWNib29rL1dvcmtzL21lL3Rlcy9tb3ZpZWFqYS9jb21wb25lbnRzL1NsaWRlci9pbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwRXdCLEFBR21DLEFBT08sY0FOSCxPQU9HLFdBTkYsVUFPdkIsU0FOeUIscUJBQ0osaUJBQ3JCIiwiZmlsZSI6Ii9Vc2Vycy9tYWNib29rL1dvcmtzL21lL3Rlcy9tb3ZpZWFqYS9jb21wb25lbnRzL1NsaWRlci9pbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCdcbmltcG9ydCB7IENhcm91c2VsIH0gZnJvbSAncmVhY3QtcmVzcG9uc2l2ZS1jYXJvdXNlbCc7XG5pbXBvcnQgU2xpZGVyQ2FyZE1vdmllIGZyb20gJy4uL0NhcmRNb3ZpZS9TbGlkZXJDYXJkTW92aWUnXG5pbXBvcnQge2Nvbm5lY3R9IGZyb20gJ3JlYWN0LXJlZHV4J1xuaW1wb3J0IHtHZXROb3dQbGF5aW5nfSBmcm9tICcuLi8uLi9yZWR1eC9hY3Rpb25zL21vdmllJ1xuaW1wb3J0IHtMaW5lYXJQcm9ncmVzcywgTGluaywgRmFifSBmcm9tICdAbWF0ZXJpYWwtdWkvY29yZSdcbmltcG9ydCB7QXJyb3dGb3J3YXJkSW9zIGFzIEFycm93LCBBcnJvd0JhY2tJb3N9IGZyb20gJ0BtYXRlcmlhbC11aS9pY29ucydcbmltcG9ydCBjb2xvcnMgZnJvbSAnLi4vLi4vdG9vbHMvY29sb3JzJztcblxuY2xhc3MgU2xpZGVyIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgICBjb25zdHJ1Y3Rvcihwcm9wcyl7XG4gICAgICAgIHN1cGVyKHByb3BzKVxuICAgICAgICB0aGlzLnN0YXRlID0ge1xuICAgICAgICAgICAgc2Nyb2xsIDogMFxuICAgICAgICB9XG4gICAgICAgIC8vIHRoaXMuc2Nyb2xsID0gdGhpcy5zY3JvbGwuYmluZCh0aGlzKVxuICAgICAgICB0aGlzLnNjcm9sbFJpZ2h0ID0gdGhpcy5zY3JvbGxSaWdodC5iaW5kKHRoaXMpXG4gICAgICAgIHRoaXMuc2Nyb2xsTGVmdHMgPSB0aGlzLnNjcm9sbExlZnRzLmJpbmQodGhpcylcbiAgICB9XG4gICAgY29tcG9uZW50RGlkTW91bnQoKXtcbiAgICAgICAgdGhpcy5wcm9wcy5kaXNwYXRjaChHZXROb3dQbGF5aW5nKCkpXG4gICAgfVxuICAgIC8vIHNjcm9sbChkaXJlY3Rpb24pe1xuICAgIC8vICAgICBsZXQgZmFyID0gJCggJy5ib3gtc2xpZGVyJyApLndpZHRoKCkvMipkaXJlY3Rpb247XG4gICAgLy8gICAgICQoJy5ib3gtc2xpZGVyJykuc2Nyb2xsTGVmdCgpICsgZmFyO1xuICAgIC8vIH0gb3VyXG4gICAgc2Nyb2xsUmlnaHQoKXtcbiAgICAgICAgdGhpcy5yZWZzLmJveFNsaWRlLnNjcm9sbExlZnQgKz0gNDAwXG4gICAgICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgc2Nyb2xsIDogdGhpcy5yZWZzLmJveFNsaWRlLnNjcm9sbExlZnRcbiAgICAgICAgfSlcbiAgICB9XG4gICAgc2Nyb2xsTGVmdHMoKXtcbiAgICAgICAgdGhpcy5yZWZzLmJveFNsaWRlLnNjcm9sbExlZnQgLT0gNDAwXG4gICAgICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgc2Nyb2xsIDogdGhpcy5yZWZzLmJveFNsaWRlLnNjcm9sbExlZnRcbiAgICAgICAgfSlcbiAgICB9XG4gICAgXG4gICAgcmVuZGVyKCl7XG4gICAgICAgIGNvbnN0IHtub3dQbGF5aW5nLCBpc0xvYWRpbmdOb3dQbGF5aW5nfSA9IHRoaXMucHJvcHMubW92aWVcbiAgICAgICAgcmV0dXJuKFxuICAgICAgICAgICAgPD5cbiAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICBpc0xvYWRpbmdOb3dQbGF5aW5nID9cbiAgICAgICAgICAgICAgICA8TGluZWFyUHJvZ3Jlc3Mgc3R5bGU9e3t3aWR0aCA6ICcxMDAlJ319IGNvbG9yPVwicHJpbWFyeVwiLz4gOlxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYm94LXNsaWRlclwiIHJlZj1cImJveFNsaWRlXCIgPlxuICAgICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICAgICAgKG5vd1BsYXlpbmcucmVzdWx0cykmJlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIChub3dQbGF5aW5nLnJlc3VsdHMubGVuZ3RoID4gMCkgJiZcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbm93UGxheWluZy5yZXN1bHRzLm1hcCh2YWx1ZSA9PiAoXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiaXRlbS1zbGlkZXJcIj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxMaW5rIGNvbG9yPVwiaW5oZXJpdFwiIHVuZGVybGluZT1cIm5vbmVcIj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8U2xpZGVyQ2FyZE1vdmllIGRhdGE9e3ZhbHVlfSAvPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPC9MaW5rPlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgICAgICAgICAgICAgICAgICApKVxuICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgPEZhYiBzaXplPVwic21hbGxcIiBzdHlsZT17e1xuICAgICAgICAgICAgICAgICAgICAgICAgYmFja2dyb3VuZCA6ICdyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuNzgpJywgcG9zaXRpb24gOiAnYWJzb2x1dGUnLCB0b3AgOiAyMDAsIGxlZnQgOiAzNTAsXG4gICAgICAgICAgICAgICAgICAgICAgICB0cmFuc2Zvcm0gOiAndHJhbnNsYXRlWSgtNTAlKScsIG1zVHJhbnNmb3JtIDogJ3RyYW5zbGF0ZVkoLTUwJSknLCBtYXJnaW4gOiAwLFxuICAgICAgICAgICAgICAgICAgICAgICAgZGlzcGxheSA6IHRoaXMuc3RhdGUuc2Nyb2xsID4gNTAwID8gJ2Jsb2NrJyA6J25vbmUnLFxuICAgICAgICAgICAgICAgICAgICAgICAganVzdGlmeUNvbnRlbnQgOiAnY2VudGVyJyxhbGlnbkl0ZW1zIDogJ2NlbnRlcicsIHRleHRBbGlnbiA6ICdjZW50ZXInXG4gICAgICAgICAgICAgICAgICAgIH19PjxBcnJvd0JhY2tJb3Mgc3R5bGU9e3tmb250U2l6ZSA6IDE4LCBjb2xvciA6IGNvbG9ycy5ibGFja1ByaW1hcnl9fSBvbkNsaWNrPXt0aGlzLnNjcm9sbExlZnRzfSAvPjwvRmFiPlxuXG4gICAgICAgICAgICAgICAgICAgIDxGYWIgc2l6ZT1cInNtYWxsXCIgc3R5bGU9e3tcbiAgICAgICAgICAgICAgICAgICAgICAgIGJhY2tncm91bmQgOiAncmdiYSgyNTUsIDI1NSwgMjU1LCAwLjc4KScsIHBvc2l0aW9uIDogJ2Fic29sdXRlJywgdG9wIDogMjAwLCByaWdodCA6IDUwLFxuICAgICAgICAgICAgICAgICAgICAgICAgdHJhbnNmb3JtIDogJ3RyYW5zbGF0ZVkoLTUwJSknLCBtc1RyYW5zZm9ybSA6ICd0cmFuc2xhdGVZKC01MCUpJywgbWFyZ2luIDogMFxuICAgICAgICAgICAgICAgICAgICB9fT48QXJyb3cgc3R5bGU9e3tmb250U2l6ZSA6IDE4LCBjb2xvciA6IGNvbG9ycy5ibGFja1ByaW1hcnl9fSBvbkNsaWNrPXt0aGlzLnNjcm9sbFJpZ2h0fSAvPjwvRmFiPlxuICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICA8L2Rpdj5cblxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAgICAgICAgIC5ib3gtc2xpZGVyIHtcbiAgICAgICAgICAgICAgICAgICAgb3ZlcmZsb3c6IGF1dG87XG4gICAgICAgICAgICAgICAgICAgIG92ZXJmbG93LXk6IGhpZGRlbjtcbiAgICAgICAgICAgICAgICAgICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcbiAgICAgICAgICAgICAgICAgICAgcGFkZGluZy1ib3R0b20gOiAzMHB4O1xuICAgICAgICAgICAgICAgICAgICBwb3N0aW9uOiByZWxhdGl2ZTtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgLml0ZW0tc2xpZGVyIHtcbiAgICAgICAgICAgICAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW4tcmlnaHQgOiAtMzcwcHg7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgYH08L3N0eWxlPlxuICAgICAgICAgICAgPC8+XG4gICAgICAgIClcbiAgICB9XG59XG5cbmNvbnN0IG1hcFN0YXRlVG9Qcm9wcyA9IChzdGF0ZSkgPT4gKHtcbiAgICBtb3ZpZSA6IHN0YXRlLm1vdmllXG59KVxuXG5leHBvcnQgZGVmYXVsdCBjb25uZWN0KG1hcFN0YXRlVG9Qcm9wcykoU2xpZGVyKVxuIl19 */\n/*@ sourceURL=/Users/macbook/Works/me/tes/movieaja/components/Slider/index.js */"));
   }
 
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Slider);
+const mapStateToProps = state => ({
+  movie: state.movie
+});
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps)(Slider));
 
 /***/ }),
 
@@ -1395,47 +1690,14 @@ module.exports = __webpack_require__(/*! core-js/library/fn/json/stringify */ "c
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js ***!
-  \**********************************************************************/
+/***/ "./node_modules/react-responsive-carousel/lib/styles/carousel.min.css":
+/*!****************************************************************************!*\
+  !*** ./node_modules/react-responsive-carousel/lib/styles/carousel.min.css ***!
+  \****************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__(/*! core-js/library/fn/object/assign */ "core-js/library/fn/object/assign");
 
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
-
-function _extends() {
-  _extends = _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default.a || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
 
 /***/ }),
 
@@ -1454,8 +1716,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _containers_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../containers/Home */ "./containers/Home/index.js");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-responsive-carousel/lib/styles/carousel.min.css */ "./node_modules/react-responsive-carousel/lib/styles/carousel.min.css");
+/* harmony import */ var react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_responsive_carousel_lib_styles_carousel_min_css__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "/Users/macbook/Works/me/tes/movieaja/pages/index.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 
@@ -1464,49 +1729,26 @@ class index extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 9
+        lineNumber: 10
       },
       __self: this
     }, __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 10
-      },
-      __self: this
-    }, "Movie | Beranda"), __jsx("link", {
-      rel: "stylesheet",
-      href: "https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.2.0/css/swiper.css",
-      __source: {
-        fileName: _jsxFileName,
         lineNumber: 11
       },
       __self: this
-    }), __jsx("link", {
-      href: "https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.2.0/css/swiper.min.css",
-      rel: "stylesheet",
+    }, "Movie | Beranda"), __jsx("script", {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
       __source: {
         fileName: _jsxFileName,
         lineNumber: 12
       },
       __self: this
-    }), __jsx("script", {
-      src: "https://unpkg.com/react-id-swiper@2.4.0/lib/react-id-swiper.js",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 13
-      },
-      __self: this
-    }), __jsx("script", {
-      src: "https://unpkg.com/react-id-swiper@2.4.0/lib/react-id-swiper.min.js",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 14
-      },
-      __self: this
     })), __jsx(_containers_Home__WEBPACK_IMPORTED_MODULE_1__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 14
       },
       __self: this
     }));
@@ -1520,7 +1762,7 @@ class index extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 /*!********************************!*\
   !*** ./redux/actions/movie.js ***!
   \********************************/
-/*! exports provided: GetGenre, PostActiveGenre, GetMovieGenre, GetTrendingMovie */
+/*! exports provided: GetGenre, PostActiveGenre, GetMovieGenre, GetTrendingMovie, GetNowPlaying */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1529,6 +1771,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostActiveGenre", function() { return PostActiveGenre; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetMovieGenre", function() { return GetMovieGenre; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetTrendingMovie", function() { return GetTrendingMovie; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GetNowPlaying", function() { return GetNowPlaying; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "axios");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _constan_movie__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constan/movie */ "./redux/constan/movie.js");
@@ -1551,6 +1794,10 @@ const GetMovieGenre = (genreId, page = 1) => ({
 const GetTrendingMovie = (time = 'week', page = 1) => ({
   type: _constan_movie__WEBPACK_IMPORTED_MODULE_1__["GET_TRENDING_MOVIE"],
   payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.themoviedb.org/3" + _constan_api__WEBPACK_IMPORTED_MODULE_2__["GET_MOVIE_TRENDING_API"] + time + '?api_key=' + "f2313f458f08d820fae16b7ea4c5ad70" + '&page=' + page)
+});
+const GetNowPlaying = (language = 'en-US', page = 1) => ({
+  type: _constan_movie__WEBPACK_IMPORTED_MODULE_1__["GET_NOW_PLAYING_MOVIE"],
+  payload: axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("https://api.themoviedb.org/3" + _constan_api__WEBPACK_IMPORTED_MODULE_2__["GET_MOVIE_NOW_PLAYING_API"] + '?api_key=' + "f2313f458f08d820fae16b7ea4c5ad70" + '&language=' + language + '&page=' + page)
 });
 
 /***/ }),
@@ -1578,7 +1825,7 @@ const openMenu = page => ({
 /*!******************************!*\
   !*** ./redux/constan/api.js ***!
   \******************************/
-/*! exports provided: GET_GENRE_API, GET_MOVIE_GENRE_API, MOVIE_IMAGE, AUTH_GET_REQ_TOKEN, AUTH_VALIDATE_LOGIN, AUTH_GET_SESSION_TOKEN, GET_MOVIE_TRENDING_API */
+/*! exports provided: GET_GENRE_API, GET_MOVIE_GENRE_API, MOVIE_IMAGE, AUTH_GET_REQ_TOKEN, AUTH_VALIDATE_LOGIN, AUTH_GET_SESSION_TOKEN, GET_MOVIE_TRENDING_API, GET_MOVIE_NOW_PLAYING_API */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1590,6 +1837,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_VALIDATE_LOGIN", function() { return AUTH_VALIDATE_LOGIN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTH_GET_SESSION_TOKEN", function() { return AUTH_GET_SESSION_TOKEN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_TRENDING_API", function() { return GET_MOVIE_TRENDING_API; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_NOW_PLAYING_API", function() { return GET_MOVIE_NOW_PLAYING_API; });
 const GET_GENRE_API = '/genre/movie/list';
 const GET_MOVIE_GENRE_API = '/discover/movie/';
 const MOVIE_IMAGE = 'https://image.tmdb.org/t/p/original/';
@@ -1597,6 +1845,7 @@ const AUTH_GET_REQ_TOKEN = '/authentication/token/new';
 const AUTH_VALIDATE_LOGIN = '/authentication/token/validate_with_login';
 const AUTH_GET_SESSION_TOKEN = '/authentication/session/new';
 const GET_MOVIE_TRENDING_API = '/trending/movie/';
+const GET_MOVIE_NOW_PLAYING_API = '/movie/now_playing';
 
 /***/ }),
 
@@ -1618,7 +1867,7 @@ const OPEN_MENU = 'OPEN_MENU';
 /*!********************************!*\
   !*** ./redux/constan/movie.js ***!
   \********************************/
-/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE */
+/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE, GET_NOW_PLAYING_MOVIE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1629,12 +1878,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_DETAIL", function() { return GET_MOVIE_DETAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POST_ACTIVE_GENRE", function() { return POST_ACTIVE_GENRE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRENDING_MOVIE", function() { return GET_TRENDING_MOVIE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_NOW_PLAYING_MOVIE", function() { return GET_NOW_PLAYING_MOVIE; });
 const GET_GENRE = 'GET_GENRE';
 const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
 const GET_MOVIE_SHOW = 'GET_MOVIE_SHOW';
 const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
-const POST_ACTIVE_GENRE = 'GET_ACTIVE_GENRE';
+const POST_ACTIVE_GENRE = 'POST_ACTIVE_GENRE';
 const GET_TRENDING_MOVIE = 'GET_TRENDING_MOVIE';
+const GET_NOW_PLAYING_MOVIE = 'GET_NOW_PLAYING_MOVIE';
 
 /***/ }),
 
@@ -1659,7 +1910,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -1715,17 +1966,6 @@ module.exports = require("core-js/library/fn/json/stringify");
 
 /***/ }),
 
-/***/ "core-js/library/fn/object/assign":
-/*!***************************************************!*\
-  !*** external "core-js/library/fn/object/assign" ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("core-js/library/fn/object/assign");
-
-/***/ }),
-
 /***/ "next/head":
 /*!****************************!*\
   !*** external "next/head" ***!
@@ -1770,17 +2010,6 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ "react-id-swiper":
-/*!**********************************!*\
-  !*** external "react-id-swiper" ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-id-swiper");
-
-/***/ }),
-
 /***/ "react-redux":
 /*!******************************!*\
   !*** external "react-redux" ***!
@@ -1789,6 +2018,17 @@ module.exports = require("react-id-swiper");
 /***/ (function(module, exports) {
 
 module.exports = require("react-redux");
+
+/***/ }),
+
+/***/ "react-responsive-carousel":
+/*!********************************************!*\
+  !*** external "react-responsive-carousel" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-responsive-carousel");
 
 /***/ }),
 

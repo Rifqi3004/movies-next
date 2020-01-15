@@ -17,6 +17,10 @@ class MenuGenre extends React.Component {
         await this.props.dispatch(GetGenre())
         this.props.dispatch(GetMovieGenre(this.props.movie.activeGenre.id,1))
     }
+    async getMovie(genre,page){
+        await this.props.dispatch(PostActiveGenre(genre))
+        await this.props.dispatch(GetMovieGenre(genre.id,page))
+    }
     render(){
         const {activeGenre, genre} = this.props.movie
         
@@ -27,7 +31,7 @@ class MenuGenre extends React.Component {
                         (genre.length > 0) &&
                         genre.map(value => (
                             <Grid item key={value.id}>
-                                <Link color="inherit" underline="none" onClick={()=>this.props.dispatch(GetMovieGenre(value.id,1))}>
+                                <Link color="inherit" underline="none" onClick={()=>this.getMovie(value,1)}>
                                     <ItemMenuGenre title={value.name} active={(value.name === activeGenre.name)?true:false} />
                                 </Link>
                             </Grid>

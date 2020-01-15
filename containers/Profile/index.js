@@ -5,8 +5,8 @@ import Slider from '../../components/Slider'
 import Span from '../../components/Span'
 import Genre from '../../components/Genre'
 import Login from '../../components/Auth/Login'
-import { Grid } from '@material-ui/core';
-
+import { Grid, Button } from '@material-ui/core';
+import {logout} from '../../redux/actions/auth'
 class Profile extends Component {
     constructor(props){
         super(props)
@@ -17,9 +17,10 @@ class Profile extends Component {
             <Layout>
                 <Span title="Profile">
                     {
-                        (isAuth) ? 
+                        (isAuth && token !== '') ? 
                         <Grid>
                             <p>Your Login</p>
+                            <Button color="primary" variant="contained" onClick={()=>this.props.dispatch(logout())}>Logout</Button>
                         </Grid> 
                         :
                         <Login />

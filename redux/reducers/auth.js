@@ -1,4 +1,4 @@
-import {SAVE_SESSION} from '../constan/auth'
+import {SAVE_SESSION, LOGOUT} from '../constan/auth'
 const initialState = {
     isAuth: false,
     token: '',
@@ -33,6 +33,13 @@ export default (state = initialState, action) => {
     case SAVE_SESSION+'_REJECTED' : 
         return {
         ...state, isError : true,
+
+        }
+    case LOGOUT : 
+        return {
+        ...state, isError : true,
+        token : '',
+        isAuth : false,
 
         }
     

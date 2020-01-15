@@ -1,34 +1,97 @@
 import React from 'react'
-import Swiper from 'react-id-swiper';
+import { Carousel } from 'react-responsive-carousel';
+import SliderCardMovie from '../CardMovie/SliderCardMovie'
+import {connect} from 'react-redux'
+import {GetNowPlaying} from '../../redux/actions/movie'
+import {LinearProgress, Link, Fab} from '@material-ui/core'
+import {ArrowForwardIos as Arrow, ArrowBackIos} from '@material-ui/icons'
+import colors from '../../tools/colors';
 
 class Slider extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            param : {
-                pagination: {
-                    el: '.swiper-pagination',
-                    type: 'bullets',
-                    clickable: true
-                  },
-                  navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                  },
-                  spaceBetween: 30
-            }
+            scroll : 0
         }
+        // this.scroll = this.scroll.bind(this)
+        this.scrollRight = this.scrollRight.bind(this)
+        this.scrollLefts = this.scrollLefts.bind(this)
     }
+    componentDidMount(){
+        this.props.dispatch(GetNowPlaying())
+    }
+    // scroll(direction){
+    //     let far = $( '.box-slider' ).width()/2*direction;
+    //     $('.box-slider').scrollLeft() + far;
+    // } our
+    scrollRight(){
+        this.refs.boxSlide.scrollLeft += 400
+        this.setState({
+            scroll : this.refs.boxSlide.scrollLeft
+        })
+    }
+    scrollLefts(){
+        this.refs.boxSlide.scrollLeft -= 400
+        this.setState({
+            scroll : this.refs.boxSlide.scrollLeft
+        })
+    }
+    
     render(){
+        const {nowPlaying, isLoadingNowPlaying} = this.props.movie
         return(
-            <Swiper {...this.state.param}>
-                <div>Slide 1</div>
-                <div>Slide 2</div>
-                <div>Slide 3</div>
-                <div>Slide 4</div>
-                <div>Slide 5</div>
-            </Swiper>
+            <>
+            {
+                isLoadingNowPlaying ?
+                <LinearProgress style={{width : '100%'}} color="primary"/> :
+                <div className="box-slider" ref="boxSlide" >
+                     {
+                        (nowPlaying.results)&&
+                            (nowPlaying.results.length > 0) &&
+                             nowPlaying.results.map(value => (
+                                <div className="item-slider">
+                                    <Link color="inherit" underline="none">
+                                        <SliderCardMovie data={value} />
+                                    </Link>
+                                </div>
+                            ))
+                        
+                    }
+                    <Fab size="small" style={{
+                        background : 'rgba(255, 255, 255, 0.78)', position : 'absolute', top : 200, left : 350,
+                        transform : 'translateY(-50%)', msTransform : 'translateY(-50%)', margin : 0,
+                        display : this.state.scroll > 500 ? 'block' :'none',
+                        justifyContent : 'center',alignItems : 'center', textAlign : 'center'
+                    }}><ArrowBackIos style={{fontSize : 18, color : colors.blackPrimary}} onClick={this.scrollLefts} /></Fab>
+
+                    <Fab size="small" style={{
+                        background : 'rgba(255, 255, 255, 0.78)', position : 'absolute', top : 200, right : 50,
+                        transform : 'translateY(-50%)', msTransform : 'translateY(-50%)', margin : 0
+                    }}><Arrow style={{fontSize : 18, color : colors.blackPrimary}} onClick={this.scrollRight} /></Fab>
+                    
+                </div>
+
+            }
+            <style jsx>{`
+                .box-slider {
+                    overflow: auto;
+                    overflow-y: hidden;
+                    white-space: nowrap;
+                    padding-bottom : 30px;
+                    postion: relative;
+                }
+                .item-slider {
+                    display: inline-block;
+                    margin-right : -370px;
+                }
+            `}</style>
+            </>
         )
     }
 }
-export default Slider
+
+const mapStateToProps = (state) => ({
+    movie : state.movie
+})
+
+export default connect(mapStateToProps)(Slider)

@@ -2243,13 +2243,15 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 /*!*******************************!*\
   !*** ./redux/constan/auth.js ***!
   \*******************************/
-/*! exports provided: SAVE_SESSION */
+/*! exports provided: SAVE_SESSION, LOGOUT */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SAVE_SESSION", function() { return SAVE_SESSION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOGOUT", function() { return LOGOUT; });
 const SAVE_SESSION = 'SAVE_SESSION';
+const LOGOUT = 'LOGOUT';
 
 /***/ }),
 
@@ -2271,7 +2273,7 @@ const OPEN_MENU = 'OPEN_MENU';
 /*!********************************!*\
   !*** ./redux/constan/movie.js ***!
   \********************************/
-/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE */
+/*! exports provided: GET_GENRE, GET_MOVIE_GENRE, GET_MOVIE_SHOW, GET_MOVIE_DETAIL, POST_ACTIVE_GENRE, GET_TRENDING_MOVIE, GET_NOW_PLAYING_MOVIE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2282,12 +2284,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_MOVIE_DETAIL", function() { return GET_MOVIE_DETAIL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "POST_ACTIVE_GENRE", function() { return POST_ACTIVE_GENRE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRENDING_MOVIE", function() { return GET_TRENDING_MOVIE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_NOW_PLAYING_MOVIE", function() { return GET_NOW_PLAYING_MOVIE; });
 const GET_GENRE = 'GET_GENRE';
 const GET_MOVIE_GENRE = 'GET_MOVIE_GENRE';
 const GET_MOVIE_SHOW = 'GET_MOVIE_SHOW';
 const GET_MOVIE_DETAIL = 'GET_MOVIE_DETAIL';
-const POST_ACTIVE_GENRE = 'GET_ACTIVE_GENRE';
+const POST_ACTIVE_GENRE = 'POST_ACTIVE_GENRE';
 const GET_TRENDING_MOVIE = 'GET_TRENDING_MOVIE';
+const GET_NOW_PLAYING_MOVIE = 'GET_NOW_PLAYING_MOVIE';
 
 /***/ }),
 
@@ -2396,6 +2400,13 @@ const initialState = {
         isError: true
       });
 
+    case _constan_auth__WEBPACK_IMPORTED_MODULE_7__["LOGOUT"]:
+      return _objectSpread({}, state, {
+        isError: true,
+        token: '',
+        isAuth: false
+      });
+
     default:
       return state;
   }
@@ -2473,9 +2484,11 @@ const initialState = {
   movies: [],
   activeGenre: '',
   isLoading: false,
+  isLoadingNowPlaying: false,
   isFinish: false,
   isError: false,
-  trendingMovies: []
+  trendingMovies: [],
+  nowPlaying: []
 };
 /* harmony default export */ __webpack_exports__["default"] = ((state = initialState, action) => {
   switch (action.type) {
@@ -2515,6 +2528,13 @@ const initialState = {
       return _objectSpread({}, state, {
         isError: true
       });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["POST_ACTIVE_GENRE"]:
+      return _objectSpread({}, state, {
+        isLoading: false,
+        isFinish: true,
+        activeGenre: action.payload
+      });
     //get movie genre
 
     case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_MOVIE_GENRE"] + '_PENDING':
@@ -2548,6 +2568,23 @@ const initialState = {
       });
 
     case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_TRENDING_MOVIE"] + '_REJECTED':
+      return _objectSpread({}, state, {
+        isError: true
+      });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_NOW_PLAYING_MOVIE"] + '_PENDING':
+      return _objectSpread({}, state, {
+        isLoadingNowPlaying: true
+      });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_NOW_PLAYING_MOVIE"] + '_FULFILLED':
+      return _objectSpread({}, state, {
+        isLoadingNowPlaying: false,
+        isFinish: true,
+        nowPlaying: action.payload.data
+      });
+
+    case _constan_movie__WEBPACK_IMPORTED_MODULE_7__["GET_NOW_PLAYING_MOVIE"] + '_REJECTED':
       return _objectSpread({}, state, {
         isError: true
       });
