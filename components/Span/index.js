@@ -8,7 +8,7 @@ import colors from '../../tools/colors'
 function Layout({ children, title }) {
   return (
     <Container style={{background:'#F9F9F9', marginBottom : 30}}>
-      <Grid container>
+      <Grid container spacing={5}>
           <Grid item xs={12} sm={12} lg={12} xl={12}>
               <h1 className="titleSpan">{title || 'Title'}</h1>
           </Grid>
@@ -23,7 +23,8 @@ function Layout({ children, title }) {
                 font-family: Poppins;
                 font-size: 16px;
                 font-weight: 700;
-                color:${colors.blackPrimary}
+                color:${colors.blackPrimary};
+                marginBottom : 20px;
             }
 
         `}</style>

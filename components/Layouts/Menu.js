@@ -89,6 +89,7 @@ const Menu = (props) => {
             flex-direction:column;
             text-align: center;
             background:#ffffff;
+            height : 100%
         }
         .logo {
             margin-bottom:40px;

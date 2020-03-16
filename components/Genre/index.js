@@ -3,9 +3,8 @@ import MenuGenre from './MenuGenre'
 import {connect} from 'react-redux'
 import {Grid} from '@material-ui/core'
 import ListMovieGenre from './ListMovieGenre'
-import Pagination from '../Pagination'
 
-const Genre = () => {
+const Genre = (props) => {
     return (
     <Grid container spacing={5}>
           <Grid item xs={12} sm={12} lg={12} xl={12}>
@@ -13,9 +12,6 @@ const Genre = () => {
           </Grid>
           <Grid item xs={12} sm={12} lg={12} xl={12}>
               <ListMovieGenre />
-          </Grid>
-          <Grid item xs={12} sm={12} lg={12} xl={12}>
-              <Pagination />
           </Grid>
       </Grid>
     )

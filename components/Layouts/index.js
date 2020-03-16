@@ -15,8 +15,8 @@ function Layout({ children }) {
           <Menu />
         </Grid>
         <Grid lg={10} item>
-          <Grid container style={{padding : 20}}>
-            <Grid item sm={12} md={12} lg={12}>
+          <Grid container style={{padding : 20}} spacing={5}>
+            <Grid item sm={12} md={12} lg={12} justify="flex-end ">
               <Header />
             </Grid>
             <Grid item sm={12} md={12} lg={12}>
